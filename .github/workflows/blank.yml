@@ -5,7 +5,7 @@
   id: run-newman
   uses: anthonyvscode/newman-action@v1
   with:
-    collection: collection.json
+    collection: New Collection.postman_collection.json
     reporters: cli
 
 - name: Output summary to console

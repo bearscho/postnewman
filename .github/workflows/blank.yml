@@ -1,15 +1,12 @@
-name: Newman Run
+- name: Checkout
+  uses: actions/checkout@v1
 
-on:
-  pull_request:
-    branches:
-    - main
+- name: Run API Tests
+  id: run-newman
+  uses: anthonyvscode/newman-action@v1
+  with:
+    collection: collection.json
+    reporters: cli
 
-jobs:
-  newman:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: matt-ball/newman-action@master
-        with:
-          collection: New Collection.postman_collection.json
+- name: Output summary to console
+  run: echo ${{ steps.run-newman.outputs.summary }}
